@@ -1,19 +1,3 @@
-"""
-Optional, advisory only LLM explanation of a discrepancy.
-
-This is deliberately kept separate from core/reconcile.py. The LLM is never
-given the power to decide the tier or change a number. It only receives the
-already computed result (declared income, bank credits, gap, tier) as input
-and is asked to return a brief, specific explanation. Text output only,
-clearly labeled as a hypothesis, never as a finding.
-
-Local LLM only, through an OpenAI compatible chat completions endpoint
-(e.g. Ollama, LM Studio, vLLM), so the tool runs fully offline.
-
-If no local LLM is configured, this fails soft: callers get a result object
-with `available = False` and a human readable reason, so the rest of the app
-keeps working without it.
-"""
 import os
 from dataclasses import dataclass
 from typing import Optional

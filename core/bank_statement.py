@@ -3,10 +3,6 @@ import re
 from dataclasses import dataclass, field
 from typing import Optional
 import pdfplumber
-
-# Matches a line like:
-# "04-Jul-2025 Receipt - Customer A (Cheque Clearing) - 12,516,000 16,716,000"
-# groups: date, description, debit ('-' or number), credit ('-' or number), balance
 TRANSACTION_LINE = re.compile(
     r"^(\d{2}-[A-Za-z]{3}-\d{4})\s+(.+?)\s+(-|[\d,]+)\s+(-|[\d,]+)\s+([\d,]+)$",
     re.MULTILINE,

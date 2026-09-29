@@ -3,7 +3,7 @@
 
 I made this for banks to qualify or reject commercial loan applicants based on their financial docs. It checks whether a bank statement's credits match a declared income figure. Runs offline. Deterministic checks, no AI required. An optional local LLM can explain flagged gaps.
 
-Demo URL: found-a-discrepency-or-not.streamlit.app
+Demo URL: [found-a-discrepency-or-not.streamlit.app](https://found-a-discrepency-or-not.streamlit.app)
 
 <img width="1879" height="910" alt="image" src="https://github.com/user-attachments/assets/1273585a-0580-41fa-9765-93872a939a53" />
 

@@ -1,13 +1,3 @@
-"""
-Document Reconciliation Tool. Streamlit app.
-
-User uploads a bank statement PDF and an income document (or types a
-declared income figure directly), and the app deterministically checks
-whether bank credits and declared income line up.
-
-Run with:
-    streamlit run app.py
-"""
 import os
 import tempfile
 
@@ -68,11 +58,6 @@ with col2:
     )
 
 st.divider()
-
-# Streamlit reruns the whole script on every widget interaction, including
-# the "Generate Explanation" button below. Results are stashed in
-# session_state on "Run Reconciliation" so they survive that later rerun
-# instead of disappearing because the outer button stopped being True.
 if st.button("Run Reconciliation", type="primary"):
     if not bank_file:
         st.error("Upload a bank statement PDF.")
@@ -171,10 +156,6 @@ if "run_result" in st.session_state:
         st.subheader("AI Explanation")
         st.caption("Suggests possible reasons for the gap. Does not change the result above.")
         st.caption("Connect a local llm to generate explanation.")
-
-        # The reconciliation inputs are deterministic, so the same case should
-        # never trigger a second network call: one call per unique input,
-        # cached after that.
         cache_key = (
             round(declared_income, 2), round(bank_summary.total_credits, 2),
             round(result.gap_pct, 2), result.tier,

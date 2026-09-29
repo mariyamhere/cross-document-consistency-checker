@@ -1,25 +1,10 @@
-"""
-Deterministic comparison between declared income and bank-statement credits.
-
-This is pure arithmetic -- no LLM involved. Given the same two numbers and
-the same thresholds, this always returns the same tier. That's the point:
-the flagging decision has to be reproducible and explainable to an analyst,
-even if an LLM is later used (elsewhere) to suggest *why* a flag fired.
-"""
 from dataclasses import dataclass
 from typing import Optional
-
-# Bank credits are expected to run somewhat below declared income/revenue
-# (not all revenue is bank-routed: cash sales, receivables timing, etc).
-# These thresholds are illustrative PoC defaults, not validated lending
-# policy -- see the README.
-NORMAL_GAP_PCT = 12.0        # up to this much lower than declared income: normal
-ELEVATED_MULTIPLIER = 1.5    # beyond NORMAL_GAP_PCT * this: material discrepancy
-
-
+NORMAL_GAP_PCT = 12.0        
+ELEVATED_MULTIPLIER = 1.5   
 @dataclass
 class ReconciliationResult:
-    tier: str                      # "MATCH" | "VARIANCE" | "DISCREPANCY" | "UNKNOWN"
+    tier: str                      
     declared_income: Optional[float]
     bank_total_credits: Optional[float]
     gap_amount: Optional[float]
